@@ -50,18 +50,20 @@ namespace TestNinja.UnitTests
         }
 
         [Test]
-        public void Peek_NewObjectInStack_ShoudReturnThisObject()
+        public void Peek_FewObjectsInStack_ShoudReturnLastObject()
         {
             var stack = new Stack<object>();
             var obj = new Object();
+            var obj2 = new Object();
 
             stack.Push(obj);
+            stack.Push(obj2);
 
-            Assert.That(() => stack.Peek(), Is.EqualTo(obj));
+            Assert.That(() => stack.Peek(), Is.EqualTo(obj2));
         }
 
         [Test]
-        public void Pop_NewObjectInStack_ShoudReturnThisObject()
+        public void Pop_OneObjectInStack_ShoudReturnThisObject()
         {
             var stack = new Stack<object>();
             var obj = new Object();
@@ -72,7 +74,7 @@ namespace TestNinja.UnitTests
         }
 
         [Test]
-        public void Pop_NewObjectInStack_ShoudReturnZeroCount()
+        public void Pop_OneObjectInStack_ShoudReturnZeroCount()
         {
             var stack = new Stack<object>();
             var obj = new Object();
