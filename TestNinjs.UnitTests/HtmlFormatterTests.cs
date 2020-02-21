@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using TestNinja.Fundamentals;
 
-namespace TestNinjs.UnitTests
+namespace TestNinja.UnitTests
 {
     [TestFixture]
     class HtmlFormatterTests

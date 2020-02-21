@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNinja", "TestNinja\TestNinja.csproj", "{7328740E-4B78-464F-8352-65D887F2145F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNinjs.UnitTests", "TestNinjs.UnitTests\TestNinjs.UnitTests.csproj", "{0DA011DF-0913-4B8D-8743-0A4DE7FA070B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNinja.UnitTests", "TestNinjs.UnitTests\TestNinja.UnitTests.csproj", "{0DA011DF-0913-4B8D-8743-0A4DE7FA070B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
