@@ -14,12 +14,14 @@ namespace TestNinja.UnitTests.Mocking
     {
         private VideoService _videoService;
         private Mock<IFileReader> _fileReader;
+        private Mock<IVideoRepository> _videoRepository;
 
         [SetUp]
         public void SetUp()
         {
+            _videoRepository = new Mock<IVideoRepository>();
             _fileReader = new Mock<IFileReader>();
-            _videoService = new VideoService(_fileReader.Object);
+            _videoService = new VideoService(_fileReader.Object, _videoRepository.Object);
         }
 
         [Test]
@@ -30,6 +32,31 @@ namespace TestNinja.UnitTests.Mocking
             var result = _videoService.ReadVideoTitle();
 
             Assert.That(result, Does.Contain("error").IgnoreCase);
+        }
+
+        [Test]
+        public void GetUnprocessedVideosAsCsv_AllVideosAreProcessed_ReturnEmprtyString()
+        {
+            _videoRepository.Setup(fr => fr.GetUnprocessedVideos())
+                .Returns(new List<Video>());
+
+            var result = _videoService.GetUnprocessedVideosAsCsv();
+
+            Assert.That(result, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void GetUnprocessedVideosAsCsv_UnprocessVideos_ReturnVideoIds()
+        {
+            _videoRepository.Setup(fr => fr.GetUnprocessedVideos())
+                .Returns(new List<Video> { 
+                    new Video { Id=1, IsProcessed = false, Title = "New video" } ,
+                    new Video { Id=2, IsProcessed = false, Title = "New video 2" }
+                });
+
+            var result = _videoService.GetUnprocessedVideosAsCsv();
+
+            Assert.That(result, Is.EqualTo("1,2"));
         }
     }
 }
